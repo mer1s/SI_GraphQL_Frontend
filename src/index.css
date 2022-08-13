@@ -8,3 +8,10 @@ body {
 .h-35-vh{
   height: 35vh !important;
 }
+.number-control{
+  width: 80px !important;
+  border-radius: 2px;
+  border: none;
+  padding: 5px;
+  margin-left: 15px;
+}

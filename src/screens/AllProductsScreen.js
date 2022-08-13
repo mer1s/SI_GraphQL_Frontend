@@ -1,27 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { gql, useQuery } from "@apollo/client";
-
-const GET_CLIENTS = gql`
-  query {
-    products {
-      id
-      name
-      description
-      price
-    }
-  }
-`;
+import { GET_PRODUCTS } from "../queries/productQueries";
 
 const AllProductsScreen = () => {
-  const { loading, error, data } = useQuery(GET_CLIENTS);
+  const { loading, error, data } = useQuery(GET_PRODUCTS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong...</p>;
 
   return (
     <div>
-      {!loading && !error && (
+      {!loading && !error && data.products.length > 0 ? (
         <Container className="px-5 d-flex flex-column justify-content-center align-items-center">
           <h2 className="py-5 fw-light">All available products:</h2>
 
@@ -71,6 +61,10 @@ const AllProductsScreen = () => {
               </Col>
             </Row>
           ))}
+        </Container>
+      ) : (
+        <Container className="px-5 d-flex flex-column justify-content-center align-items-center">
+          <h2 className="py-5 fw-light text-danger">No products available currently...</h2>
         </Container>
       )}
     </div>

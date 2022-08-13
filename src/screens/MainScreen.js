@@ -16,7 +16,7 @@ const MainScreen = () => {
           </Link>
         </Col>
         <Col md="4" className="p-1 h-35-vh">
-          <Link to={"/products"} className="text-decoration-none">
+          <Link to={"/create-product"} className="text-decoration-none">
             <h3 className="h-100 w-100 bg-success justify-content-center d-flex align-items-center text-light fw-light">
               Create new product
             </h3>
@@ -32,7 +32,7 @@ const MainScreen = () => {
           </Link>
         </Col>
         <Col md="4" className="p-1 h-35-vh">
-          <Link to={"/products"} className="text-decoration-none">
+          <Link to={"/delete-product"} className="text-decoration-none">
             <h3 className="h-100 w-100 bg-danger justify-content-center d-flex align-items-center text-light fw-light">
               Delete product
             </h3>

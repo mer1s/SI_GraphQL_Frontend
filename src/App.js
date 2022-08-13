@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainScreen from "./screens/MainScreen";
 import AllProductsScreen from "./screens/AllProductsScreen";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import DeleteProductScreen from "./screens/DeleteProductScreen";
+import CreateProductScreen from "./screens/CreateProductScreen";
 
 const client = new ApolloClient({
   uri: "http://localhost:5250/graphql",
@@ -18,6 +20,8 @@ function App() {
           <Routes>
             <Route path="/" element={<MainScreen />} />
             <Route path="/products" element={<AllProductsScreen />} />
+            <Route path="/delete-product" element={<DeleteProductScreen />} />
+            <Route path="/create-product" element={<CreateProductScreen />} />
           </Routes>
         </BrowserRouter>
       </Container>
