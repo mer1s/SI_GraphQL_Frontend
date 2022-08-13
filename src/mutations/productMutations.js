@@ -7,8 +7,8 @@ export const DELETE_PRODUCT = gql`
 `;
 
 export const CREATE_PRODUCT = gql`
-  mutation ($saveProduct: ProductInput!) {
-    saveProduct(newProduct: $saveProduct) {
+  mutation addProduct($input: ProductInput!) {
+    saveProduct(newProduct: $input) {
       id
     }
   }

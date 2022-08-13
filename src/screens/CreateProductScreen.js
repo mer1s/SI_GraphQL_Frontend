@@ -9,21 +9,29 @@ const CreateProductScreen = () => {
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
 
-  const [saveProduct, { data, loading, error }] = useMutation(CREATE_PRODUCT, {
-    variables: {
-      newProduct
-    },
-    refetchQueries: [{ query: GET_PRODUCTS }],
-  });
+  const [createProduct, { data, loading, error }] = useMutation(
+    CREATE_PRODUCT,
+    {
+      refetchQueries: [{ query: GET_PRODUCTS }],
+    }
+  );
 
-  const saveProductHandler = () =>{
-    saveProduct({
-        id: 0,
-        name: name,
-        price: parseInt(price),
-        description: description,
-      })
-  }
+  const saveProductHandler = () => {
+    createProduct({
+      variables: {
+        input: {
+          id: 0,
+          name: name,
+          price: parseInt(price),
+          description: description,
+        },
+      },
+    });
+
+    setDescription('')
+    setPrice(0)
+    setName('')
+  };
 
   return (
     <Container fluid className="p-0 m-0">

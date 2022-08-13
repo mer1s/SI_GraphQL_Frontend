@@ -61,6 +61,7 @@ const AllProductsScreen = () => {
               </Col>
             </Row>
           ))}
+          <div className="pb-5 mb-5"></div>
         </Container>
       ) : (
         <Container className="px-5 d-flex flex-column justify-content-center align-items-center">
