@@ -25,7 +25,7 @@ const MainScreen = () => {
         <Col md="2"></Col>
         <Col md="2"></Col>
         <Col md="4" className="p-1 h-35-vh">
-          <Link to={"/products"} className="text-decoration-none">
+          <Link to={"/update-product"} className="text-decoration-none">
             <h3 className="h-100 w-100 bg-warning justify-content-center d-flex align-items-center text-light fw-light">
               Edit product
             </h3>

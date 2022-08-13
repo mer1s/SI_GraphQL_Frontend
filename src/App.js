@@ -6,6 +6,7 @@ import AllProductsScreen from "./screens/AllProductsScreen";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import DeleteProductScreen from "./screens/DeleteProductScreen";
 import CreateProductScreen from "./screens/CreateProductScreen";
+import UpdateProductScreen from "./screens/UpdateProductScreen";
 
 const client = new ApolloClient({
   uri: "http://localhost:5250/graphql",
@@ -22,6 +23,7 @@ function App() {
             <Route path="/products" element={<AllProductsScreen />} />
             <Route path="/delete-product" element={<DeleteProductScreen />} />
             <Route path="/create-product" element={<CreateProductScreen />} />
+            <Route path="/update-product" element={<UpdateProductScreen />} />
           </Routes>
         </BrowserRouter>
       </Container>
