@@ -1,13 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { gql, useQuery } from "@apollo/client";
 import { GET_PRODUCTS } from "../queries/productQueries";
+import { useSearchParams } from "react-router-dom";
 
 const AllProductsScreen = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
+  const [params] = useSearchParams();
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Something went wrong...</p>;
+  const updatedId = params.get("updated") ? params.get("updated") : null;
+  const createdId = params.get("created") ? params.get("created") : null;
+
+  if (loading)
+    return (
+      <div className="h-100-vh d-flex justify-content-center align-items-center">
+        <h3 className="fw-light text-center">Loading...</h3>
+      </div>
+    );
+  if (error)
+    return (
+      <div className="h-100-vh d-flex justify-content-center align-items-center">
+        <h3 className="fw-light text-center text-danger">
+          Something went wrong.
+        </h3>
+      </div>
+    );
 
   return (
     <div>
@@ -38,7 +55,18 @@ const AllProductsScreen = () => {
             </Col>
           </Row>
           {data.products.map((n) => (
-            <Row key={n.id} className="w-100 bg-light py-2 mb-2 rounded">
+            <Row
+              key={n.id}
+              className={`w-100 ${
+                updatedId != null && parseInt(updatedId) === n.id
+                  ? "border border-primary"
+                  : ""
+              } ${
+                createdId != null && parseInt(createdId) === n.id
+                  ? "border border-success"
+                  : ""
+              } bg-light py-2 mb-2 rounded`}
+            >
               <Col md="2">
                 <h6 className="m-0 d-flex h-100 align-items-center p-0 w-100 text-start">
                   {n.id}
@@ -65,7 +93,9 @@ const AllProductsScreen = () => {
         </Container>
       ) : (
         <Container className="px-5 d-flex flex-column justify-content-center align-items-center">
-          <h2 className="py-5 fw-light text-danger">No products available currently...</h2>
+          <h2 className="py-5 fw-light text-danger">
+            No products available currently...
+          </h2>
         </Container>
       )}
     </div>

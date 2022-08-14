@@ -1,10 +1,12 @@
 import { useMutation } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { CREATE_PRODUCT } from "../mutations/productMutations";
 import { GET_PRODUCTS } from "../queries/productQueries";
 
 const CreateProductScreen = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
@@ -28,10 +30,14 @@ const CreateProductScreen = () => {
       },
     });
 
-    setDescription('')
-    setPrice(0)
-    setName('')
+    setDescription("");
+    setPrice(0);
+    setName("");
   };
+
+  useEffect(() => {
+    if (data) navigate(`/products?created=${data?.saveProduct?.id}`);
+  }, [data]);
 
   return (
     <Container fluid className="p-0 m-0">

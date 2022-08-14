@@ -1,10 +1,12 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { UPDATE_PRODUCT } from "../mutations/productMutations";
 import { GET_PRODUCTS } from "../queries/productQueries";
 
 const UpdateProductScreen = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [id, setId] = useState(0);
@@ -18,23 +20,24 @@ const UpdateProductScreen = () => {
   );
 
   const updateProductHandler = async () => {
-    console.log('poziva se')
+    
     await updateProduct({
         variables: {
             input: {
-                id: id,
+                id: parseInt(id),
                 name: name,
                 description: description,
                 price: parseInt(price),
             },
         },
     });
-    console.log('poziva se 2')
 
     setId(0)
     setDescription('')
     setPrice(0)
     setName('')
+
+    navigate(`/products?updated=${id}`)
   };
 
   return (
